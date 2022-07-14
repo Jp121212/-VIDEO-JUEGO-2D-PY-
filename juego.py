@@ -1,32 +1,29 @@
-import pygame 
-pygame.init()
+from pickletools import pystring
+import pygame, sys
+from debug import debug
+from settings import *
 
-size = (800,500)
+class Game:
+    def _init_(self):
+        #General Setup
+        pygame.init()
+        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
+        pygame.display.set_caption('Holy Rescue')
+        self.clock = pygame.time.Clock()
+    
+    def run(self):
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+            
+            self.screen.fill('Black')
+            debug('hello :)')
+            pygame.display.update()
+            self.clock.tick(FPS)
 
-##Mis colores
-black = (0,0,0)
-white = (255,255,255)
-red = (255,0,0)
-green = (0,255,0)
-blue = (0,0,255)
-
-
-##Creando la pantalla
-screen = pygame.display.set_mode(size)
-
-while True:
-    for event in pygame.event.get():
-        print(event)
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            quit()
-
-    screen.fill(white)
-    ##Dibujo
-    pygame.draw.line(screen,red,[0,0],[100,100])
-
-    #Dibujo
-
-
-    ##Aqui se actualiza la pantalla
-    pygame.display.flip()
+if  __name__ == '__juego__':
+    game = Game()
+    game.run()
+    
